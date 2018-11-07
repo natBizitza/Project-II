@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Search</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <label for="item-select">
+            Filter:
+            <select id="item-select" name="item-select">
+                <option value="choose">--Please choose an option--</option>
+                <option value="nombre">My Repos</option>
+                <option value="planeta">My followers</option>
+                <option value="species">I'm following</option>
+                <option value="species">Browse other users by name</option>
+            </select>
+        </label>
+        <input type="text" id="inputItem" />
+        <button id="btn" value="search">Search</button>
+        <div id="info"></div>
+        <aside></aside>
+    </main>
+    <footer>
+        <p>©Copyright 2018. All rights reversed.</p>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
