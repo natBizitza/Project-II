@@ -1,24 +1,10 @@
 // JavaScript source code
-let searchName, searchChoice;
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('select[name="item-select"]').onchange = changeEventHandler;
-}, false);
-
-function changeEventHandler(e) {
-    if (e.target.value === "repos") {
-        searchChoice = "users/" + startBtn + "/repos";
-    } else if (e.target.value === "followers") {
-        searchChoice = "followers";
-    } else if (e.target.value === "following") {
-        searchName = "following";
-    }
-}
+let searchName;
+let searchChoice;
 
 //SearchName
 (function () {
 
-    let startBtn = document.getElementById('btnName');
     let startBtn = document.getElementById('btnName');
     startBtn.addEventListener("click", obtainData);
 
@@ -37,24 +23,24 @@ function changeEventHandler(e) {
 
     function pedirItems(array) {
         let index = 0;
-        let xhrFechas = new XMLHttpRequest();
+        let xhrItems = new XMLHttpRequest();
 
-        xhrFechas.open("GET", "https://api.github.com/" + searchName + array[index]);
-        xhrFechas.onreadystatechange = function () {
+        xhrItems.open("GET", "https://api.github.com/" + searchName + array[index]);
+        xhrItems.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 showData(this.response);
                 index++;
                 if (index < array.length) {
-                    xhrFechas.open("GET", "https://api.github.com/" + searchName + array[index]);
-                    xhrFechas.send();
+                    xhrItems.open("GET", "https://api.github.com/" + searchName + array[index]);
+                    xhrItems.send();
                 }
             }
-            xhrFechas.send();
-        };                 
+        };          
+        xhrItems.send();
     }
 
     function showData(response) {
-        let json = response; 3
+        let json = response; 
 
         //to extract the text we can use later
         let data = JSON.parse(json);
@@ -75,48 +61,61 @@ function changeEventHandler(e) {
             let image = '<img src="' + x['avatar_url'] + '" />';
 
             document.getElementById('info').innerHTML += image;
-
-            //document.getElementById('info').innerHTML += name + '-' + year;
         });
     }
 }());
 
 //searchOption
+let input = document.getElementById('item-name').value;
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('select[name="item-select"]').onchange = changeEventHandler;
+}, false);
+
+function changeEventHandler(e) {
+    if (e.target.value === "repos") {
+        searchChoice = "users/" + input + "/repos";
+        
+    } else if (e.target.value === "followers") {
+        searchChoice = "users/" + input + "/followers";
+    } else if (e.target.value === "following") {
+        searchChoice = "users/" + input + "/following";
+    }
+}
+
 (function () {
 
     let array = [];
 
     function obtainChoice() {
 
-        searchName = "search/users?q=";
-
-        let input = document.getElementById('item-select').value;
-
-        array.push(input);
+        array.push(searchChoice);
 
         pedirItems(array);
     }
 
+    //obtainChoice();
+
     function pedirItems(array) {
         let index = 0;
-        let xhrFechas = new XMLHttpRequest();
+        let xhrItems = new XMLHttpRequest();
 
-        xhrFechas.open("GET", "https://api.github.com/" + searchChoice + array[index]);
-        xhrFechas.onreadystatechange = function () {
+        xhrItems.open("GET", "https://api.github.com/" + array[index]);
+        xhrItems.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 showData(this.response);
                 index++;
                 if (index < array.length) {
-                    xhrFechas.open("GET", "https://api.github.com/" + searchChoice + array[index]);
-                    xhrFechas.send();
+                    xhrItems.open("GET", "https://api.github.com/" + array[index]);
+                    xhrItems.send();
                 }
             }
-            xhrFechas.send();
         };
+        xhrItems.send();
     }
 
     function showData(response) {
-        let json = response; 3
+        let json = response; 
 
         //to extract the text we can use later
         let data = JSON.parse(json);
@@ -124,22 +123,21 @@ function changeEventHandler(e) {
 
         data['items'].forEach(x => {
 
-
             let element = document.getElementById("aside");
             var z = document.createElement('p');
 
-            ////let login = x.repos;
-
-            z.innerHTML = x;
+            if (searchChoice === "users/" + input + "/repos") {
+                z.innerHTML = x.repos_url;
+            } else if (searchChoice === "users/" + input + "/followers") {
+                z.innerHTML = x.followers_url;
+            } else if (searchChoice === "users/" + input + "/following") {
+                z.innerHTML = x.following_url;
+            }
 
             element.appendChild(z);
-
-            ////////let image = '<img src="' + x['avatar_url'] + '" />';
-
-            ////////document.getElementById('info').innerHTML += image;
-
-            //document.getElementById('info').innerHTML += name + '-' + year;
         });
     }
 }());
+
+console.log(input);
 
