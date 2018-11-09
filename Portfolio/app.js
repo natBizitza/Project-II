@@ -57,7 +57,7 @@ let searchChoice;
 
             element.appendChild(z);
 
-            let image = '<img src="' + x['avatar_url'] + '" />';
+            let image = '<img id="image" src="' + x['avatar_url'] + '" />';
 
             document.getElementById('info').innerHTML += image;
         });
@@ -101,7 +101,7 @@ let searchChoice;
         xhrItems.open("GET", "https://api.github.com/users/" + userName + array[index]);
         xhrItems.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
-                showData(this.response);
+                showData(this.response, userName);
                 index++;
                 if (index < array.length) {
                     xhrItems.open("GET", "https://api.github.com/users/" + userName + array[index]);
@@ -112,7 +112,7 @@ let searchChoice;
         xhrItems.send();
     }
 
-    function showData(response) {
+    function showData(response,userName) {
         let json = response; 
 
         //to extract the text we can use later
@@ -124,22 +124,49 @@ let searchChoice;
             let element = document.getElementById("aside");
             var z = document.createElement('p');
 
-            
+            let repos =  "/repos";
 
-            if (searchChoice === userName + "/repos") {
+            function r() {
                 let name = x.name;
                 z.innerHTML = name;
                 element.appendChild(z);
-            } else if (searchChoice === userName + "/followers") {
+            }
+
+            let followers = "/followers";
+            let following = "/following";
+
+            function f() {
                 let login = x.login;
                 z.innerHTML = login;
                 element.appendChild(z);
-            } else if (searchChoice === userName + "/following") {
-                let login1 = x.login;              
-                z.innerHTML = login1;
-                element.appendChild(z);
             }
-            element.appendChild(z);
+            
+            switch (searchChoice) {
+                case repos:
+                    r();
+                    break;
+                case followers:
+                    f();
+                    break;
+                case following:
+                    f();
+                    break;
+            }
+
+            //if (searchChoice === "/repos") {
+            //    let name = x.name;
+            //    z.innerHTML = name;
+            //    element.appendChild(z);
+            //} else if (searchChoice === "/followers") {
+            //    let login = x.login;
+            //    z.innerHTML = login;
+            //    element.appendChild(z);
+            //} else if (searchChoice ===  "/following") {
+            //    let login1 = x.login;              
+            //    z.innerHTML = login1;
+            //    element.appendChild(z);
+            //}
+            //element.appendChild(z);
         });
     }
 }());
