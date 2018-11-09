@@ -65,7 +65,6 @@ let searchChoice;
 }());
 
 //searchOption
-let input = document.getElementById('item-name').value;
 
 (function () {  
 
@@ -77,12 +76,14 @@ let input = document.getElementById('item-name').value;
 
     function obtainChoice() {
 
-        if (document.getElementById('item-select').value === "repos") {
-            searchChoice = "users/" + document.getElementById('item-name').value + "/repos";
-        } else if (document.getElementById('item-select').value === "followers") {
-            searchChoice = "users/" + document.getElementById('item-name').value + "/followers";
-        } else if (document.getElementById('item-select').value === "following") {
-            searchChoice = "users/" + document.getElementById('item-name').value + "/following";
+        let selOpt = document.getElementById('item-select').value;
+
+        if (selOpt === "repos") {
+            searchChoice = "/repos";
+        } else if (selOpt === "followers") {
+            searchChoice = "/followers";
+        } else if (selOpt === "following") {
+            searchChoice = "/following";
         }
 
         array.push(searchChoice);
@@ -93,16 +94,17 @@ let input = document.getElementById('item-name').value;
     //obtainChoice();
 
     function pedirItems(array) {
+        let userName = document.getElementById('item-name').value;
         let index = 0;
         let xhrItems = new XMLHttpRequest();
 
-        xhrItems.open("GET", "https://api.github.com/" + array[index]);
+        xhrItems.open("GET", "https://api.github.com/users/" + userName + array[index]);
         xhrItems.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 showData(this.response);
                 index++;
                 if (index < array.length) {
-                    xhrItems.open("GET", "https://api.github.com/" + array[index]);
+                    xhrItems.open("GET", "https://api.github.com/users/" + userName + array[index]);
                     xhrItems.send();
                 }
             }
@@ -122,24 +124,26 @@ let input = document.getElementById('item-name').value;
             let element = document.getElementById("aside");
             var z = document.createElement('p');
 
-            if (searchChoice === "users/" + input + "/repos") {
-                let name = x.name;
+            
 
+            if (searchChoice === userName + "/repos") {
+                let name = x.name;
                 z.innerHTML = name;
-            } else if (searchChoice === "users/" + input + "/followers") {
+                element.appendChild(z);
+            } else if (searchChoice === userName + "/followers") {
                 let login = x.login;
                 z.innerHTML = login;
-            } else if (searchChoice === "users/" + input + "/following") {
-                let login1 = x.login;
-                
+                element.appendChild(z);
+            } else if (searchChoice === userName + "/following") {
+                let login1 = x.login;              
                 z.innerHTML = login1;
+                element.appendChild(z);
             }
             element.appendChild(z);
         });
     }
 }());
 
-console.log(input);
 
 
 
