@@ -1,7 +1,6 @@
 // JavaScript source code
 let searchName;
 let searchChoice;
-
 //SearchName
 (function () {
 
@@ -68,26 +67,23 @@ let searchChoice;
 //searchOption
 let input = document.getElementById('item-name').value;
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelector('select[name="item-select"]').onchange = changeEventHandler;
-}, false);
-
-function changeEventHandler(e) {
-    if (e.target.value === "repos") {
-        searchChoice = "users/" + input + "/repos";
-        
-    } else if (e.target.value === "followers") {
-        searchChoice = "users/" + input + "/followers";
-    } else if (e.target.value === "following") {
-        searchChoice = "users/" + input + "/following";
-    }
-}
-
-(function () {
+(function () {  
 
     let array = [];
 
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('select[name="item-select"]').onchange = obtainChoice;
+    }, false);
+
     function obtainChoice() {
+
+        if (document.getElementById('item-select').value === "repos") {
+            searchChoice = "users/" + document.getElementById('item-name').value + "/repos";
+        } else if (document.getElementById('item-select').value === "followers") {
+            searchChoice = "users/" + document.getElementById('item-name').value + "/followers";
+        } else if (document.getElementById('item-select').value === "following") {
+            searchChoice = "users/" + document.getElementById('item-name').value + "/following";
+        }
 
         array.push(searchChoice);
 
@@ -121,23 +117,29 @@ function changeEventHandler(e) {
         let data = JSON.parse(json);
         console.log(data);
 
-        data['items'].forEach(x => {
+        data.forEach(x => {
 
             let element = document.getElementById("aside");
             var z = document.createElement('p');
 
             if (searchChoice === "users/" + input + "/repos") {
-                z.innerHTML = x.repos_url;
-            } else if (searchChoice === "users/" + input + "/followers") {
-                z.innerHTML = x.followers_url;
-            } else if (searchChoice === "users/" + input + "/following") {
-                z.innerHTML = x.following_url;
-            }
+                let name = x.name;
 
+                z.innerHTML = name;
+            } else if (searchChoice === "users/" + input + "/followers") {
+                let login = x.login;
+                z.innerHTML = login;
+            } else if (searchChoice === "users/" + input + "/following") {
+                let login1 = x.login;
+                
+                z.innerHTML = login1;
+            }
             element.appendChild(z);
         });
     }
 }());
 
 console.log(input);
+
+
 
