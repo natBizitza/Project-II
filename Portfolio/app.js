@@ -49,7 +49,7 @@ let searchChoice;
 
 
             let element = document.getElementById("info");
-            var z = document.createElement('p');
+            let z = document.createElement('p');
 
             let login = x.login;
 
@@ -58,6 +58,8 @@ let searchChoice;
             element.appendChild(z);
 
             let image = '<img id="image" src="' + x['avatar_url'] + '" />';
+
+            
 
             document.getElementById('info').innerHTML += image;
         });

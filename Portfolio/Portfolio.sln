@@ -7,8 +7,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		about.html = about.html
 		app.js = app.js
+		featuredUsers.html = featuredUsers.html
+		..\..\..\..\Desktop\heart.png = ..\..\..\..\Desktop\heart.png
+		..\..\..\..\Desktop\heart.svg = ..\..\..\..\Desktop\heart.svg
 		index.html = index.html
 		search.html = search.html
+		searchStyles.css = searchStyles.css
 		styles.css = styles.css
 	EndProjectSection
 EndProject
