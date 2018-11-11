@@ -162,6 +162,18 @@ let searchChoice;
     }
 }());
 
+////LocalStorage
+
+//function getUser() {
+//    let loginName = document.getElementById('nombre').value;
+
+//    let user = { loginName: nombre};
+
+//    document.getElementById('mostrar').innerHTML = person.nombre + " " + person.edad;
+
+//    //to convert person to string
+//    localStorage.setItem('person', JSON.stringify(person));
+//}
 
 
 
