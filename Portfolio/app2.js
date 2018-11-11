@@ -45,3 +45,14 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
     dots[slideIndex - 1].className += " active";
 }
+
+/********************************MAP****************************************************/
+
+function initMap() {
+    // Constructor creates a new map - only center and zoom are required.
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 43.263013, lng: - 2.934985 },
+        zoom: 15,
+        mapTypeControl: false
+    });
+}

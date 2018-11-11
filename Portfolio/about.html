@@ -9,7 +9,6 @@
     <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="searchStyles.css">
 </head>
 <body class="wrapper">
     <header class="header">
@@ -25,12 +24,15 @@
     </header>
     <main class="main">
 
-        <aside id="aside">
-        </aside>
+        <div id="map"></div>
+        <aside id="aside"></aside>
     </main>
     <footer class="footer">
         <p>©Copyright 2018. All rights reserved.</p>
     </footer>
     <script src="app2.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=MYAPYKEY=3&callback=initMap">
+    </script>
 </body>
 </html>

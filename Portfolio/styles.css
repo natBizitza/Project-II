@@ -274,3 +274,12 @@ html {
         opacity: 1
     }
 }
+
+/********************************MAP****************************************************/
+
+#map {
+    height: 200px;
+    width: 362px;
+    position: absolute;
+    justify-content:center;
+}
