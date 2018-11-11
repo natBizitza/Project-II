@@ -5,31 +5,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <title>GitHub Search</title>
+    <title>Home</title>
+    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="searchStyles.css">
 </head>
 <body class="wrapper">
     <header class="header">
-        <nav class="navigation">
-            <a href="index.html">Home</a>
+        <nav class="navigation" id="topnav">
+            <a href="index.html" class="active">Home</a>
             <a href="search.html">GitHub Search</a>
-            <a href="featuredUsers">Featured GitHub Users ♡</a>
-            <a href="about.html">Contact</a>
+            <a href="featuredUsers.html">Featured GitHub Users ♡</a>
+            <a href="about.html">About</a>
+            <a href="javascript:void(0);" class="icon">
+                <i class="fa fa-bars"></i>
+            </a>
         </nav>
     </header>
     <main class="main">
-
+        <h1>My projects</h1>
         <div id="info">
-            <p id='url'></p>
-
-            <div id="aside">
-            </div>
+            
         </div>
     </main>
     <footer class="footer">
         <p>©Copyright 2018. All rights reserved.</p>
     </footer>
-    <!--<script src="app.js"></script>-->
+    <script src="app2.js"></script>
 </body>
 </html>

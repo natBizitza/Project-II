@@ -5,7 +5,10 @@ let searchChoice;
 (function () {
 
     let startBtn = document.getElementById('btnName');
-    startBtn.addEventListener("click", obtainData);
+
+    if (startBtn !== null) {
+        startBtn.addEventListener("click", obtainData);
+    }
 
     let array = [];
 
@@ -57,7 +60,7 @@ let searchChoice;
 
             element.appendChild(z);
 
-            let image = '<img id="image" width="200vw" border-radius="6px!important" src="' + x['avatar_url'] + '" />';
+            let image = '<img id="image" width="200vw" margin="1em" border-radius="6px" src="' + x['avatar_url'] + '" />';
             let icon = '<img id="heart" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/154/heavy-black-heart_2764.png" alt="Red Heart on Twitter Twemoji 11.2" width="35vw"/>';
 
             
@@ -155,24 +158,12 @@ let searchChoice;
                     f();
                     break;
             }
-
-            //if (searchChoice === "/repos") {
-            //    let name = x.name;
-            //    z.innerHTML = name;
-            //    element.appendChild(z);
-            //} else if (searchChoice === "/followers") {
-            //    let login = x.login;
-            //    z.innerHTML = login;
-            //    element.appendChild(z);
-            //} else if (searchChoice ===  "/following") {
-            //    let login1 = x.login;              
-            //    z.innerHTML = login1;
-            //    element.appendChild(z);
-            //}
-            //element.appendChild(z);
         });
     }
 }());
+
+
+
 
 
 

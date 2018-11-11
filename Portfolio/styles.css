@@ -92,7 +92,7 @@ html {
 }*/
 
 /*navigation bar*/
-/*@import "compass/css3"; Why I may need it? Should I install it in mcd first?*/
+@import "compass/css3"; /*darken(124 line) I should install smh?*/
 
 .navigation {
     display: flex;
@@ -114,16 +114,21 @@ html {
     justify-content: flex-end;
 }
 
-    .navigation a {
-        text-decoration: none;
-        display: block;
-        padding: 1em;
-        color: white;
-    }
+.navigation a {
+    text-decoration: none;
+    display: block;
+    padding: 1em;
+    color: white;
+}
+/*TODO:check it*/
+.navigation a:hover {
+    background: darken(deepskyblue,2%);
+}
 
-        .navigation a:hover {
-            background: darken(deepskyblue, 2%);
-        }
+/* Hide the link that should open and close the topnav on small screens */
+.navigation .icon {
+    display: none;
+}
 
 @media all and (max-width: 800px) {
     .navigation {
@@ -138,16 +143,42 @@ html {
         padding: 0;
     }
 
-        .navigation a {
-            text-align: center;
-            padding: 10px;
-            border-top: 1px solid rgba(255,255,255,0.3);
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-        }
+    .navigation a {
+        text-align: center;
+        padding: 10px;
+        border-top: 1px solid rgba(255,255,255,0.3);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    /*hide all links, except for the first one ("Home"). Show the link that contains should open and close the navigation (.icon) */
+    .navigation li:last-of-type a {
+        border-bottom: none;
+    }
 
+    .navigation a /*a:not(:first-child)*/ {
+    display: none;
+    }
 
-        .navigation li:last-of-type a {
-            border-bottom: none;
-        }
+    .navigation a.icon {
+        float: right;+
+        display: block;
+    }
+
+    /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. 
+       This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+    .navigation.responsive {
+        position: relative;
+    }
+
+    .navigation.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .navigation.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
 }
 
