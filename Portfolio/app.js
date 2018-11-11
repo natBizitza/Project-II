@@ -57,11 +57,12 @@ let searchChoice;
 
             element.appendChild(z);
 
-            let image = '<img id="image" src="' + x['avatar_url'] + '" />';
+            let image = '<img id="image" width="200vw" border-radius="6px!important" src="' + x['avatar_url'] + '" />';
+            let icon = '<img id="heart" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/154/heavy-black-heart_2764.png" alt="Red Heart on Twitter Twemoji 11.2" width="35vw"/>';
 
             
 
-            document.getElementById('info').innerHTML += image;
+            document.getElementById('info').innerHTML += image + icon;
         });
     }
 }());
