@@ -58,8 +58,10 @@ let searchChoice;
 
             z.innerHTML = login;
 
+            //to show user's name
             element.appendChild(z);
 
+            //display avatar
             //let image = '<img id="image" width="200vw" margin="1em" border-radius="6px" src="' + x['avatar_url'] + '" />';
             let image = document.createElement("img");
             image.setAttribute("id", "image");
@@ -71,6 +73,8 @@ let searchChoice;
             icon.setAttribute("class", "login");
             icon.setAttribute("src", "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/154/heavy-black-heart_2764.png")
             icon.setAttribute("width", "35vw");
+
+            icon.addEventListener("click", addFeatured(login));
             //icon.addEventListener(.., function() {.., login})
 
             //document.getElementById('info').innerHTML += image + icon;
@@ -175,15 +179,22 @@ let searchChoice;
 
 ////LocalStorage
 
+function addFeatured(nombre) {
+    let user = { loginName: nombre };
+    localStorage.setItem('user', JSON.stringify(user));
+
+    let savedInfo = JSON.parse(localStorage.getItem('user'));
+
+    if (savedInfo !== null) {
+        document.getElementById('fUser').innerHTML = savedInfo.loginName;
+    } else {
+        console.log("The button doesn't exist on the page.");
+    }
+}
+
 //function getUser() {
-//    let loginName = document.getElementById('nombre').value;
-
-//    let user = { loginName: nombre};
-
-//    document.getElementById('mostrar').innerHTML = person.nombre + " " + person.edad;
-
-//    //to convert person to string
-//    localStorage.setItem('person', JSON.stringify(person));
+//    let user = { loginName: nombre };
+//    localStorage.setItem('user', JSON.stringify(person));
 //}
 
 
