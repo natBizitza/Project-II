@@ -70,20 +70,41 @@ let searchChoice;
 
             //let icon = '<img id="heart" class="'+x.login+'"src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/154/heavy-black-heart_2764.png" alt="Red Heart on Twitter Twemoji 11.2" width="35vw"/>';
             let icon = document.createElement("img");
-            icon.setAttribute("class", "login");
+            icon.setAttribute("class", login);
             icon.setAttribute("src", "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/154/heavy-black-heart_2764.png")
             icon.setAttribute("width", "35vw");
 
-            icon.addEventListener("click", addFeatured(login));
-            //icon.addEventListener(.., function() {.., login})
 
             //document.getElementById('info').innerHTML += image + icon;
             document.getElementById('info').appendChild(image);
             document.getElementById('info').appendChild(icon);
 
+            //icon.addEventListener("click", addFeatured(login));
+            icon.addEventListener("click", function () {
+
+            let user = { loginName: login};
+            localStorage.setItem('user', JSON.stringify(user));
+
+            //let savedInfo = JSON.parse(localStorage.getItem('user'));
+
+            //if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
+            //    document.getElementById('fUser').innerHTML = savedInfo.loginName;
+            //} else {
+            //    console.log("The button doesn't exist on the page.");
+            //}
+        })
+
         });
     }
 }());
+
+let savedInfo = JSON.parse(localStorage.getItem('user'));
+
+if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
+    document.getElementById('fUser').innerHTML += savedInfo.loginName;
+} else {
+    console.log("The button doesn't exist on the page.");
+}
 
 //searchOption
 
@@ -185,7 +206,7 @@ function addFeatured(nombre) {
 
     let savedInfo = JSON.parse(localStorage.getItem('user'));
 
-    if (savedInfo !== null) {
+    if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
         document.getElementById('fUser').innerHTML = savedInfo.loginName;
     } else {
         console.log("The button doesn't exist on the page.");

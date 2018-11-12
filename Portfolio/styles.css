@@ -2,6 +2,11 @@
 html {
     box-sizing: border-box;
 }
+
+/*body {
+    background: url(Green and Blue.jpg);
+}*/
+
 .wrapper {
     display: flex;
     flex-flow: row wrap;
@@ -28,13 +33,28 @@ html {
     width:100vw;
 }
 
-.main {
-    /*display: flex;
+main.about {
+    display: flex;
     flex-flow:row;
-    justify-content:center;*/
+    justify-content:center;
+    padding: 3em;
+}
+
+.fUser, .search {
+    /*display: flex;
+    flex-flow: row;
+    justify-content: center;*/
+    padding: 3em;
+}
+
+.index {
+    /*display: flex;
+    flex-flow: row;
+    justify-content: center;*/.
     padding: 3em;
     /*background: deepskyblue;*/
 }
+
 
 .info {
     display: flex;
@@ -141,7 +161,7 @@ html {
         border-top: 1px solid rgba(255,255,255,0.3);
         border-bottom: 1px solid rgba(0,0,0,0.1);
     }
-    /*hide all links, except for the first one ("Home"). Show the link that contains should open and close the navigation (.icon) */
+    /* Show the link that contains should open and close the navigation (.icon) */
     .navigation li:last-of-type a {
         border-bottom: none;
     }
@@ -151,7 +171,7 @@ html {
     }
 
     .navigation a.icon {
-        float: right;
+        float: left;
         display: block;
     }
 
