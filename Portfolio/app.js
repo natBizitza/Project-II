@@ -21,6 +21,7 @@ let searchChoice;
         array.push(input);
 
         pedirItems(array);
+        //document.getElementById('item-name').value = ""; // to empty search field
     }
 
     function pedirItems(array) {
@@ -47,6 +48,7 @@ let searchChoice;
         //to extract the text we can use later
         let data = JSON.parse(json);
         console.log(data);
+        document.getElementById("info").innerHTML = "";
 
         data['items'].forEach(x => {
 
@@ -79,39 +81,36 @@ let searchChoice;
             document.getElementById('info').appendChild(image);
             document.getElementById('info').appendChild(icon);
 
+            
+
             //icon.addEventListener("click", addFeatured(login));
             icon.addEventListener("click", function () {
-
-            let user = { loginName: login};
-            localStorage.setItem('user', JSON.stringify(user));
-
-            //let savedInfo = JSON.parse(localStorage.getItem('user'));
-
-            //if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
-            //    document.getElementById('fUser').innerHTML = savedInfo.loginName;
-            //} else {
-            //    console.log("The button doesn't exist on the page.");
-            //}
-        })
+                let users = JSON.parse(localStorage.getItem("users"));
+                if (users === null) {
+                    users = [];
+                }
+                let user = { loginName: login };
+                users.push(user);
+                localStorage.setItem('users', JSON.stringify(users));
+            })
 
         });
     }
 }());
 
-let savedInfo = JSON.parse(localStorage.getItem('user'));
+let savedInfo = JSON.parse(localStorage.getItem('users'));
 
-if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
+if (savedInfo !== null && document.getElementById('fUser') !== null) {
 
-    //let z = document.createElement('p');
+    let element = document.getElementById("info");
 
-    //let login = x.login;
+    savedInfo.forEach( user => {
+        let z = document.createElement('p');
+        z.innerHTML = user.loginName;
+        element.appendChild(z);
+    });
+    
 
-    //z.innerHTML = login;
-
-    ////to show user's name
-    //element.appendChild(z);
-
-    document.getElementById('fUser').innerHTML += savedInfo.loginName;
 } else {
     console.log("The button doesn't exist on the page.");
 }
@@ -122,9 +121,12 @@ if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
 
     let array = [];
 
-    document.addEventListener('DOMContentLoaded', function () {
-        document.querySelector('select[name="item-select"]').onchange = obtainChoice;
-    }, false);
+    let select = document.querySelector('select[name="item-select"]');
+    if (select !== null) {
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('select[name="item-select"]').onchange = obtainChoice;
+        }, false);
+    }
 
     function obtainChoice() {
 
@@ -210,23 +212,20 @@ if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
 
 ////LocalStorage
 
-function addFeatured(nombre) {
-    let user = { loginName: nombre };
-    localStorage.setItem('user', JSON.stringify(user));
-
-    let savedInfo = JSON.parse(localStorage.getItem('user'));
-
-    if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
-        document.getElementById('fUser').innerHTML = savedInfo.loginName;
-    } else {
-        console.log("The button doesn't exist on the page.");
-    }
-}
-
-//function getUser() {
+//function addFeatured(nombre) {
 //    let user = { loginName: nombre };
-//    localStorage.setItem('user', JSON.stringify(person));
+//    localStorage.setItem('user', JSON.stringify(user));
+
+//    let savedInfo = JSON.parse(localStorage.getItem('user'));
+
+//    if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
+//        document.getElementById('fUser').innerHTML = savedInfo.loginName;
+//    } else {
+//        console.log("The button doesn't exist on the page.");
+//    }
 //}
+
+
 
 
 
