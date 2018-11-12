@@ -60,12 +60,23 @@ let searchChoice;
 
             element.appendChild(z);
 
-            let image = '<img id="image" width="200vw" margin="1em" border-radius="6px" src="' + x['avatar_url'] + '" />';
-            let icon = '<img id="heart" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/154/heavy-black-heart_2764.png" alt="Red Heart on Twitter Twemoji 11.2" width="35vw"/>';
+            //let image = '<img id="image" width="200vw" margin="1em" border-radius="6px" src="' + x['avatar_url'] + '" />';
+            let image = document.createElement("img");
+            image.setAttribute("id", "image");
+            image.setAttribute("width", "200vw");
+            image.setAttribute("src", x['avatar_url']);
 
-            
+            //let icon = '<img id="heart" class="'+x.login+'"src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/154/heavy-black-heart_2764.png" alt="Red Heart on Twitter Twemoji 11.2" width="35vw"/>';
+            let icon = document.createElement("img");
+            icon.setAttribute("class", "login");
+            icon.setAttribute("src", "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/twitter/154/heavy-black-heart_2764.png")
+            icon.setAttribute("width", "35vw");
+            //icon.addEventListener(.., function() {.., login})
 
-            document.getElementById('info').innerHTML += image + icon;
+            //document.getElementById('info').innerHTML += image + icon;
+            document.getElementById('info').appendChild(image);
+            document.getElementById('info').appendChild(icon);
+
         });
     }
 }());
