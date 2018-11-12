@@ -101,6 +101,16 @@ let searchChoice;
 let savedInfo = JSON.parse(localStorage.getItem('user'));
 
 if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
+
+    //let z = document.createElement('p');
+
+    //let login = x.login;
+
+    //z.innerHTML = login;
+
+    ////to show user's name
+    //element.appendChild(z);
+
     document.getElementById('fUser').innerHTML += savedInfo.loginName;
 } else {
     console.log("The button doesn't exist on the page.");
