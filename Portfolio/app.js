@@ -210,24 +210,6 @@ if (savedInfo !== null && document.getElementById('fUser') !== null) {
     }
 }());
 
-////LocalStorage
-
-//function addFeatured(nombre) {
-//    let user = { loginName: nombre };
-//    localStorage.setItem('user', JSON.stringify(user));
-
-//    let savedInfo = JSON.parse(localStorage.getItem('user'));
-
-//    if (savedInfo !== null && document.getElementById('fUser').innerHTML !== null) {
-//        document.getElementById('fUser').innerHTML = savedInfo.loginName;
-//    } else {
-//        console.log("The button doesn't exist on the page.");
-//    }
-//}
-
-
-
-
 
 
 
